@@ -1,0 +1,37 @@
+/* Given two strings, write a method to decide if one is a permutation of the other */
+
+/* JS */
+
+
+
+function checkPermutation(s1, s2){
+    let map = new Map();
+    for(let i=0; i<s1.length; i++){
+        if(!map.has(s1.charAt(i))){
+        map.set(s1.charAt(i), 1)
+        }else{
+            map.set(s1.charAt(i), map.get(s1.charAt(i))+1);
+        }
+    }
+    
+    for(let i=0; i<s2.length; i++){
+        if(!map.has(s2.charAt(i))){
+        map.set(s2.charAt(i), 1)
+        }else{
+            map.set(s2.charAt(i), map.get(s2.charAt(i))-1);
+        }
+    }
+    
+   for(const v of map.values()){
+       if(v!=0){
+           return false;
+       }
+   }
+    return true;
+    
+}
+
+
+console.log(checkPermutation('ab', 'ba'));
+console.log(checkPermutation('abaaa', 'ba'));
+console.log(checkPermutation('ab', 'abba'));
