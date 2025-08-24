@@ -1,0 +1,31 @@
+/* Given a string, write a function to check if it a permutation of a palindrome. A palindrome is a word or phrase that is the same forwards and backwards. A permutation is a rearrangemt of letters. 
+The palindrome does not need to be limited to just dictionary  words. You can ignore casing and non-letter characters
+*/
+
+
+/* JS */
+
+function palindromePermutation(s) {
+    
+    let map = new Map();
+    for(const ch of s.toLowerCase()){
+        if(ch == ' ')continue;
+        else{
+            map.set(ch, (map.get(ch)||0)+1);
+        }
+    }
+    
+    let odds=0;
+    for(let v of map.values()){
+        if(v%2!=0){
+            odds++;
+        }
+    }
+    
+    if(odds>1){
+        return false;
+    }
+    return true;
+};
+
+console.log(palindromePermutation('Tact Coa'))
