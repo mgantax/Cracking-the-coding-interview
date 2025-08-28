@@ -1,0 +1,42 @@
+/* Implement an algorithm to find the kth to last element of a singly linked list */
+
+/* JS */
+
+
+class Node {
+    constructor(val)
+    {
+        this.data = val;
+        this.next = null;
+    }
+}
+
+
+function returnKthToLast(head, N) {
+    
+    let temp = head;
+    let len =0;
+    let curr = head;
+    
+    while(curr!=null){
+        curr= curr.next;
+        len++;
+    }
+    
+   if(len<N) return -1;
+    
+    for(let i=0; i<len-N; i++){
+        temp = temp.next;
+    }
+   return temp;
+};
+
+let head = new Node(12);
+head.next = new Node(11);
+head.next.next = new Node(12);
+head.next.next.next = new Node(21);
+head.next.next.next.next = new Node(41);
+head.next.next.next.next.next = new Node(43);
+head.next.next.next.next.next.next = new Node(21);
+
+console.log(returnKthToLast(head, 3));
