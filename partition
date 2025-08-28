@@ -4,3 +4,64 @@
 
 /* JS */
 
+class Node {
+    constructor(val)
+    {
+        this.data = val;
+        this.next = null;
+    }
+}
+
+
+function partition(node, x) {
+    
+   if (!head) return head;
+
+  let newHead = null; // front of the rebuilt list (collects < x by prepending)
+  let newTail = null; // tail of the rebuilt list (collects >= x by appending)
+
+  let cur = head;
+  while (cur) {
+    const next = cur.next; // save next
+    cur.next = null;       // detach current
+
+    if (cur.val < x) {
+      // Prepend to head
+      if (!newHead) {
+        newHead = newTail = cur;
+      } else {
+        cur.next = newHead;
+        newHead = cur;
+      }
+    } else {
+      // Append to tail
+      if (!newHead) {
+        newHead = newTail = cur;
+      } else {
+        newTail.next = cur;
+        newTail = cur;
+      }
+    }
+
+    cur = next;
+  }
+
+  // Ensure proper termination
+  if (newTail) newTail.next = null;
+  return newHead;
+    
+    
+    
+    
+   
+};
+
+let head = new Node(12);
+head.next = new Node(11);
+head.next.next = new Node(13);
+head.next.next.next = new Node(21);
+head.next.next.next.next = new Node(41);
+head.next.next.next.next.next = new Node(43);
+
+
+console.log(partition(head, 13));
